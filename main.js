@@ -1,313 +1,361 @@
 /**
  * Rapi.In Laundry — Landing Page JavaScript
  *
- * Features:
- *  1. Navbar scroll state (transparent hero → frosted white)
- *  2. Mobile navigation hamburger toggle
- *  3. Smooth scroll with navbar offset
- *  4. Active section highlight in nav
- *  5. FAQ accordion
- *  6. Scroll-reveal (IntersectionObserver)
- *  7. Book Now modal — open / close / ESC / backdrop click
- *  8. Registration form — client-side validation preview
- *     (NO backend, NO data submission, NO external integration)
- *
- * ─── FUTURE INTEGRATION NOTE ────────────────────────────────────
- *  Search for "FUTURE_INTEGRATION_POINT" in this file and in
- *  index.html to find the exact location where a real backend
- *  endpoint, Google Form URL, or external service should be wired.
- * ────────────────────────────────────────────────────────────────
+ * 1. Navbar scroll state
+ * 2. Mobile hamburger
+ * 3. Smooth scroll (navbar-offset aware)
+ * 4. Active nav highlight on scroll
+ * 5. FAQ accordion
+ * 6. Scroll-reveal (IntersectionObserver)
+ * 7. Early Access modal (open / close / ESC / backdrop)
+ * 8. Privacy Policy modal
+ * 9. Registration form — submits to Google Apps Script → Google Sheets
  */
-
 'use strict';
 
-/* ============================================================
-   1. Navbar — scroll state
-   ============================================================ */
+/* ================================================================
+   KONFIGURASI — EDIT DI SINI JIKA URL BERUBAH
+   ================================================================ */
+const APPS_SCRIPT_URL =
+  'https://script.google.com/macros/s/AKfycbxRZYdOyFM-o-g_p3jqvPtyqPYvEY4ZTZtPhFo8Mt0d81jcl__4Xv6f0uiGyRRhpxN8Vw/exec';
 
+
+/* ── 1. Navbar scroll ── */
 const navbar = document.getElementById('navbar');
-
-function syncNavbar() {
-  navbar.classList.toggle('scrolled', window.scrollY > 30);
-}
-
-syncNavbar(); // run on load (page may be refreshed mid-scroll)
-window.addEventListener('scroll', syncNavbar, { passive: true });
+const syncNav = () => navbar.classList.toggle('scrolled', window.scrollY > 30);
+syncNav();
+window.addEventListener('scroll', syncNav, { passive: true });
 
 
-/* ============================================================
-   2. Mobile navigation — hamburger
-   ============================================================ */
+/* ── 2. Mobile hamburger ── */
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobile-nav');
 
-const hamburgerBtn = document.getElementById('hamburger-btn');
-const mobileMenu   = document.getElementById('mobile-menu');
-
-hamburgerBtn?.addEventListener('click', () => {
-  const open = mobileMenu.classList.toggle('open');
-  hamburgerBtn.setAttribute('aria-expanded', String(open));
-  hamburgerBtn.setAttribute('aria-label', open ? 'Tutup menu' : 'Buka menu navigasi');
+hamburger?.addEventListener('click', () => {
+  const open = mobileNav.classList.toggle('open');
+  hamburger.setAttribute('aria-expanded', String(open));
+  hamburger.setAttribute('aria-label', open ? 'Tutup menu' : 'Buka menu navigasi');
 });
-
-// Close when any link or button in the mobile menu is tapped
-mobileMenu?.querySelectorAll('a, button').forEach(el => {
+mobileNav?.querySelectorAll('a, button').forEach(el => {
   el.addEventListener('click', () => {
-    mobileMenu.classList.remove('open');
-    hamburgerBtn.setAttribute('aria-expanded', 'false');
-    hamburgerBtn.setAttribute('aria-label', 'Buka menu navigasi');
+    mobileNav.classList.remove('open');
+    hamburger?.setAttribute('aria-expanded', 'false');
+    hamburger?.setAttribute('aria-label', 'Buka menu navigasi');
   });
 });
 
 
-/* ============================================================
-   3. Smooth scroll with fixed navbar offset
-   ============================================================ */
-
-const NAV_HEIGHT = 80; // px — matches #navbar height
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', e => {
-    const id     = anchor.getAttribute('href');
+/* ── 3. Smooth scroll ── */
+const NAV_H = 72;
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  if (a.classList.contains('privacy-trigger') || a.classList.contains('early-access-trigger')) return;
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
     if (!id || id === '#') return;
     const target = document.querySelector(id);
     if (!target) return;
     e.preventDefault();
-    const top = target.getBoundingClientRect().top + window.scrollY - NAV_HEIGHT;
-    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    window.scrollTo({
+      top: target.getBoundingClientRect().top + window.scrollY - NAV_H,
+      behavior: 'smooth',
+    });
   });
 });
 
 
-/* ============================================================
-   4. Active nav link on scroll
-   ============================================================ */
-
-const sections   = document.querySelectorAll('section[id]');
-const navLinks   = document.querySelectorAll('.nav-links a[href^="#"]');
-
-const sectionObs = new IntersectionObserver(
-  entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      navLinks.forEach(link => {
-        const active = link.getAttribute('href') === `#${entry.target.id}`;
-        link.style.color = active && navbar.classList.contains('scrolled')
-          ? 'var(--deep-blue)' : '';
-        link.style.fontWeight = active ? '800' : '';
-      });
+/* ── 4. Active nav link ── */
+const sections = document.querySelectorAll('section[id]');
+const navAs    = document.querySelectorAll('.nav-links a[href^="#"]');
+const sObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    navAs.forEach(a => {
+      const active = a.getAttribute('href') === `#${e.target.id}`;
+      a.style.color      = active ? 'var(--cta)' : '';
+      a.style.fontWeight = active ? '800' : '';
     });
-  },
-  { rootMargin: `-${NAV_HEIGHT}px 0px -55% 0px`, threshold: 0 }
-);
-
-sections.forEach(s => sectionObs.observe(s));
+  });
+}, { rootMargin: `-${NAV_H}px 0px -55% 0px`, threshold: 0 });
+sections.forEach(s => sObs.observe(s));
 
 
-/* ============================================================
-   5. FAQ accordion
-   ============================================================ */
-
+/* ── 5. FAQ accordion ── */
 document.querySelectorAll('.faq-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const item   = btn.closest('.faq-item');
     const isOpen = item.classList.contains('open');
-
-    // Close all
-    document.querySelectorAll('.faq-item.open').forEach(openItem => {
-      if (openItem !== item) {
-        openItem.classList.remove('open');
-        openItem.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
+    item.closest('.faq-wrap')?.querySelectorAll('.faq-item.open').forEach(o => {
+      if (o !== item) {
+        o.classList.remove('open');
+        o.querySelector('.faq-btn')?.setAttribute('aria-expanded', 'false');
       }
     });
-
-    // Toggle current
     item.classList.toggle('open', !isOpen);
     btn.setAttribute('aria-expanded', String(!isOpen));
   });
 });
 
 
-/* ============================================================
-   6. Scroll-reveal
-   ============================================================ */
-
-const revealObs = new IntersectionObserver(
-  entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('visible');
-      revealObs.unobserve(entry.target); // fire once only
-    });
-  },
-  { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-);
-
-document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
-
-
-/* ============================================================
-   7. Book Now modal — open / close
-   ============================================================ */
-
-const modalOverlay = document.getElementById('modal-overlay');
-const modalBox     = document.getElementById('modal-box');
-const closeBtn     = document.getElementById('modal-close-btn');
-const bookBtns     = document.querySelectorAll('.book-now-trigger');
-
-/** Elements to trap focus within the modal */
-const FOCUSABLE = 'button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
-
-function openModal() {
-  modalOverlay.classList.add('open');
-  modalOverlay.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
-
-  // Move focus into modal
-  setTimeout(() => {
-    const first = modalBox.querySelector(FOCUSABLE);
-    first?.focus();
-  }, 80);
-}
-
-function closeModal() {
-  modalOverlay.classList.remove('open');
-  modalOverlay.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
-  resetForm();
-}
-
-bookBtns.forEach(btn => btn.addEventListener('click', openModal));
-closeBtn?.addEventListener('click', closeModal);
-
-// Close on backdrop click (outside modal box)
-modalOverlay?.addEventListener('click', e => {
-  if (e.target === modalOverlay) closeModal();
-});
-
-// Close on ESC key
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && modalOverlay.classList.contains('open')) closeModal();
-});
-
-// Basic focus trap inside modal
-modalBox?.addEventListener('keydown', e => {
-  if (e.key !== 'Tab') return;
-  const focusable = [...modalBox.querySelectorAll(FOCUSABLE)];
-  const first     = focusable[0];
-  const last      = focusable[focusable.length - 1];
-  if (e.shiftKey && document.activeElement === first) {
-    e.preventDefault(); last.focus();
-  } else if (!e.shiftKey && document.activeElement === last) {
-    e.preventDefault(); first.focus();
-  }
-});
-
-
-/* ============================================================
-   8. Registration form — client-side validation preview only
-      FRONTEND DEMO — NO BACKEND, NO DATA SUBMISSION
-   ============================================================ */
-
-const form          = document.getElementById('reg-form');
-const nameInput     = document.getElementById('field-name');
-const igInput       = document.getElementById('field-instagram');
-const submitBtn     = document.getElementById('submit-btn');
-const nameError     = document.getElementById('error-name');
-const igError       = document.getElementById('error-instagram');
-
-/** Update submit button state based on field values */
-function syncSubmitState() {
-  const filled = nameInput.value.trim() !== '' && igInput.value.trim() !== '';
-  submitBtn.disabled = !filled;
-  submitBtn.setAttribute('aria-disabled', String(!filled));
-  submitBtn.classList.toggle('ready', filled);
-}
-
-nameInput?.addEventListener('input', () => {
-  nameInput.classList.remove('error');
-  nameError.classList.remove('visible');
-  syncSubmitState();
-});
-
-igInput?.addEventListener('input', () => {
-  igInput.classList.remove('error');
-  igError.classList.remove('visible');
-  syncSubmitState();
-});
-
-/** Validate a single field — returns true if valid */
-function validateField(input, errorEl, errorMsg) {
-  if (input.value.trim() === '') {
-    input.classList.add('error');
-    errorEl.textContent = errorMsg;
-    errorEl.classList.add('visible');
-    return false;
-  }
-  input.classList.remove('error');
-  errorEl.classList.remove('visible');
-  return true;
-}
-
-form?.addEventListener('submit', e => {
-  e.preventDefault(); // Always prevent — this is a frontend preview only
-
-  const nameOk = validateField(nameInput, nameError, 'Nama lengkap tidak boleh kosong.');
-  const igOk   = validateField(igInput,   igError,   'Username Instagram tidak boleh kosong.');
-
-  if (!nameOk || !igOk) return;
-
-  /**
-   * FUTURE_INTEGRATION_POINT
-   * ──────────────────────────────────────────────────────────
-   * When backend / external form service is ready:
-   *
-   *   const endpoint = form.dataset.action; // set via data-action attribute
-   *   fetch(endpoint, {
-   *     method: 'POST',
-   *     headers: { 'Content-Type': 'application/json' },
-   *     body: JSON.stringify({
-   *       fullName:          nameInput.value.trim(),
-   *       instagramUsername: igInput.value.trim(),
-   *     }),
-   *   })
-   *   .then(res => { if (!res.ok) throw new Error(); return res.json(); })
-   *   .then(data => { showSuccessState(); })
-   *   .catch(() => { showErrorState(); });
-   *
-   * For now, the submission is intentionally a no-op.
-   * ──────────────────────────────────────────────────────────
-   */
-
-  // Show preview-only message instead of a fake success claim
-  showPreviewState();
-});
-
-function showPreviewState() {
-  const wrap = form.closest('.modal-box');
-  const previewNote = wrap.querySelector('.modal-preview-note');
-  if (previewNote) {
-    previewNote.style.background = '#dbeafe';
-    previewNote.style.borderColor = 'var(--sky-blue)';
-    previewNote.style.color = '#1e40af';
-    previewNote.innerHTML = '🛠️ <strong>Form Preview Mode</strong> — Pendaftaran resmi belum aktif. Tersambung ke sistem pendaftaran saat peluncuran.';
-    previewNote.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
-}
-
-function resetForm() {
-  if (!form) return;
-  form.reset();
-  syncSubmitState();
-
-  // Reset field error states
-  [nameInput, igInput].forEach(input => {
-    input.classList.remove('error');
+/* ── 6. Scroll-reveal ── */
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('visible');
+    revObs.unobserve(e.target);
   });
-  [nameError, igError].forEach(el => el.classList.remove('visible'));
+}, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
 
-  // Reset preview note
-  const previewNote = form.closest('.modal-box')?.querySelector('.modal-preview-note');
-  if (previewNote) {
-    previewNote.style.cssText = '';
-    previewNote.innerHTML = '⚠️ <strong>Form preview</strong> — Pendaftaran resmi coming soon.';
+
+/* ── 7 & 8. Modal helpers ── */
+const FOCUSABLE = 'button:not([disabled]),input:not([disabled]),a[href],[tabindex]:not([tabindex="-1"])';
+
+function openModal(el) {
+  el.classList.add('open');
+  el.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => el.querySelector(FOCUSABLE)?.focus(), 80);
+}
+function closeModal(el, resetFn) {
+  el.classList.remove('open');
+  el.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+  resetFn?.();
+}
+function trapFocus(box) {
+  box.addEventListener('keydown', e => {
+    if (e.key !== 'Tab') return;
+    const all   = [...box.querySelectorAll(FOCUSABLE)];
+    const first = all[0];
+    const last  = all[all.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus(); }
+  });
+}
+
+// ESC closes any open modal
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  document.querySelectorAll('.modal-bd.open').forEach(m => closeModal(m));
+});
+// Backdrop click
+document.querySelectorAll('.modal-bd').forEach(bd => {
+  bd.addEventListener('click', e => { if (e.target === bd) closeModal(bd); });
+});
+
+/* Registration modal */
+const regModal      = document.getElementById('reg-modal');
+const regModalBox   = document.getElementById('reg-modal-box');
+const regModalClose = document.getElementById('reg-modal-close');
+
+document.querySelectorAll('.early-access-trigger').forEach(btn => {
+  btn.addEventListener('click', () => openModal(regModal));
+});
+regModalClose?.addEventListener('click', () => closeModal(regModal, resetModalForm));
+trapFocus(regModalBox);
+
+/* Privacy modal */
+const privModal      = document.getElementById('privacy-modal');
+const privModalClose = document.getElementById('privacy-modal-close');
+
+document.querySelectorAll('.privacy-trigger').forEach(a => {
+  a.addEventListener('click', e => { e.preventDefault(); openModal(privModal); });
+});
+privModalClose?.addEventListener('click', () => closeModal(privModal));
+
+
+/* ================================================================
+   9. REGISTRATION FORM — Kirim data ke Google Sheets via Apps Script
+   ================================================================ */
+
+/**
+ * Tampilkan status loading pada tombol submit.
+ */
+function setSubmitLoading(btn, isLoading) {
+  if (isLoading) {
+    btn.disabled = true;
+    btn.setAttribute('aria-disabled', 'true');
+    btn.textContent = 'Mengirim...';
+    btn.classList.remove('active');
+  } else {
+    btn.disabled = false;
+    btn.setAttribute('aria-disabled', 'false');
+    btn.classList.add('active');
   }
+}
+
+/**
+ * Tampilkan pesan sukses — sembunyikan form, tampilkan konfirmasi.
+ */
+function showSuccess(form, notice) {
+  // Sembunyikan semua input & tombol
+  form.querySelectorAll('.form-grp, .btn-submit').forEach(el => {
+    el.style.display = 'none';
+  });
+
+  // Update notice jadi pesan sukses
+  if (notice) {
+    notice.style.display     = 'flex';
+    notice.style.background  = '#d1fae5';
+    notice.style.borderColor = '#10b981';
+    notice.style.color       = '#065f46';
+    notice.style.fontWeight  = '600';
+    notice.style.padding     = '.9rem 1.1rem';
+    notice.innerHTML = '✅ <strong>Pendaftaran berhasil!</strong>&nbsp; Kami akan menghubungi kamu sebelum peluncuran. Terima kasih sudah daftar!';
+    notice.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+
+/**
+ * Tampilkan pesan error jaringan / server.
+ */
+function showError(submitBtn, submitBtnOriginalText, notice) {
+  // Kembalikan tombol ke kondisi semula
+  submitBtn.disabled = false;
+  submitBtn.setAttribute('aria-disabled', 'false');
+  submitBtn.textContent = submitBtnOriginalText;
+  submitBtn.classList.add('active');
+
+  if (notice) {
+    notice.style.display     = 'flex';
+    notice.style.background  = '#fee2e2';
+    notice.style.borderColor = '#ef4444';
+    notice.style.color       = '#7f1d1d';
+    notice.style.fontWeight  = '600';
+    notice.innerHTML = '❌ <strong>Gagal mengirim.</strong>&nbsp; Coba lagi dalam beberapa saat.';
+  }
+}
+
+/**
+ * Wire a registration form:
+ * - Validasi client-side
+ * - Kirim ke Google Apps Script (→ Google Sheets)
+ * - Tampilkan sukses / error
+ */
+function wireForm({ form, nameIn, igIn, nameErr, igErr, submitBtn, notice }) {
+  if (!form) return;
+
+  /* Sync tombol submit — aktif hanya jika kedua field terisi */
+  function sync() {
+    const ok = nameIn.value.trim() !== '' && igIn.value.trim() !== '';
+    submitBtn.disabled = !ok;
+    submitBtn.setAttribute('aria-disabled', String(!ok));
+    submitBtn.classList.toggle('active', ok);
+  }
+
+  /* Validasi satu field */
+  function validate(input, errEl, msg) {
+    if (!input.value.trim()) {
+      input.classList.add('invalid');
+      errEl.textContent = msg;
+      errEl.classList.add('show');
+      return false;
+    }
+    input.classList.remove('invalid');
+    errEl.classList.remove('show');
+    return true;
+  }
+
+  nameIn.addEventListener('input', () => {
+    nameIn.classList.remove('invalid');
+    nameErr.classList.remove('show');
+    sync();
+  });
+  igIn.addEventListener('input', () => {
+    igIn.classList.remove('invalid');
+    igErr.classList.remove('show');
+    sync();
+  });
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+
+    /* Validasi dua field */
+    const ok1 = validate(nameIn, nameErr, 'Nama lengkap tidak boleh kosong.');
+    const ok2 = validate(igIn,   igErr,   'Username Instagram tidak boleh kosong.');
+    if (!ok1 || !ok2) return;
+
+    /* Simpan teks asli tombol sebelum diganti "Mengirim..." */
+    const originalBtnText = submitBtn.textContent;
+
+    /* Tampilkan loading */
+    setSubmitLoading(submitBtn, true);
+
+    /* Sembunyikan notice lama */
+    if (notice) notice.style.display = 'none';
+
+    /* Siapkan payload */
+    const payload = {
+      fullName:          nameIn.value.trim(),
+      instagramUsername: igIn.value.trim(),
+      timestamp:         new Date().toISOString(),
+    };
+
+    try {
+      /*
+       * Kirim ke Google Apps Script.
+       * Mode 'no-cors' diperlukan karena Google Apps Script
+       * tidak mengirimkan header CORS yang sesuai.
+       * Response tidak bisa dibaca (opaque), tapi data tetap terkirim.
+       */
+      await fetch(APPS_SCRIPT_URL, {
+        method:  'POST',
+        mode:    'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(payload),
+      });
+
+      /* Fetch dengan mode no-cors selalu "berhasil" secara teknis.
+         Anggap sukses jika tidak ada exception. */
+      showSuccess(form, notice);
+
+    } catch (err) {
+      /* Error jaringan (offline, CORS block, dsb.) */
+      showError(submitBtn, originalBtnText, notice);
+    }
+  });
+
+  /* Reset — dipanggil saat modal ditutup */
+  form._reset = () => {
+    form.reset();
+    sync();
+    [nameIn, igIn].forEach(i => i.classList.remove('invalid'));
+    [nameErr, igErr].forEach(el => el.classList.remove('show'));
+
+    // Tampilkan kembali semua field yang mungkin disembunyikan oleh showSuccess
+    form.querySelectorAll('.form-grp, .btn-submit').forEach(el => {
+      el.style.display = '';
+    });
+
+    if (notice) {
+      notice.style.cssText = '';
+      notice.style.display = 'none';
+    }
+  };
+}
+
+/* ── Wire inline form (Section 6) ── */
+wireForm({
+  form:      document.getElementById('ea-form'),
+  nameIn:    document.getElementById('ea-name'),
+  igIn:      document.getElementById('ea-ig'),
+  nameErr:   document.getElementById('ea-err-name'),
+  igErr:     document.getElementById('ea-err-ig'),
+  submitBtn: document.getElementById('ea-submit'),
+  notice:    document.getElementById('ea-notice'),
+});
+
+/* ── Wire modal form ── */
+wireForm({
+  form:      document.getElementById('modal-form'),
+  nameIn:    document.getElementById('m-name'),
+  igIn:      document.getElementById('m-ig'),
+  nameErr:   document.getElementById('m-err-name'),
+  igErr:     document.getElementById('m-err-ig'),
+  submitBtn: document.getElementById('modal-submit'),
+  notice:    document.getElementById('modal-notice'),
+});
+
+function resetModalForm() {
+  document.getElementById('modal-form')?._reset?.();
 }
