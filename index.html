@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rapi.In Laundry — Rapi.in Bajumu Sekarang! Bayar Nanti Aja~</title>
+  <meta name="description" content="Rapi.In Laundry — Solusi laundry praktis dengan Smart Locker 24/7 dan PayLater khusus member. Berlokasi di Jl. Borobudur Raya, Tangerang." />
+
+  <!-- Fonts: Nunito (display) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ================================================================
+     NAVBAR
+     ================================================================ -->
+<header id="navbar" role="banner">
+  <div class="container">
+    <nav class="nav-inner" aria-label="Navigasi utama">
+
+      <!-- Logo -->
+      <a href="#hero" class="nav-logo" aria-label="Rapi.In Laundry – Beranda">
+        <img
+          src="Logo Rapiin Loundry.jpeg"
+          alt="Rapi.In Laundry"
+          class="nav-logo-img"
+        />
+      </a>
+
+      <!-- Desktop links -->
+      <ul class="nav-links" role="list">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#usp">Services</a></li>
+        <li><a href="#pricing-membership">Membership</a></li>
+        <li><a href="#location">Location</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+
+      <!-- Desktop CTA -->
+      <button
+        class="btn btn-sky nav-cta-desktop"
+        id="nav-book-btn"
+        aria-label="Book Now — daftar jadi member"
+      >
+        Book Now
+      </button>
+
+      <!-- Mobile hamburger -->
+      <button
+        class="nav-hamburger"
+        id="hamburger-btn"
+        aria-label="Buka menu navigasi"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span></span><span></span><span></span>
+      </button>
+
+    </nav>
+
+    <!-- Mobile drawer -->
+    <nav id="mobile-menu" class="nav-mobile" aria-label="Menu mobile">
+      <a href="#hero">Home</a>
+      <a href="#usp">Services</a>
+      <a href="#pricing-membership">Membership</a>
+      <a href="#location">Location</a>
+      <a href="#faq">FAQ</a>
+      <button class="btn btn-sky book-now-trigger" aria-label="Book Now">Book Now</button>
+    </nav>
+  </div>
+</header>
+
+
+<!-- ================================================================
+     HERO
+     ================================================================ -->
+<section id="hero" aria-label="Beranda">
+  <div class="hero-bg-circle hero-bg-circle-1" aria-hidden="true"></div>
+  <div class="hero-bg-circle hero-bg-circle-2" aria-hidden="true"></div>
+  <div class="hero-bg-dots" aria-hidden="true"></div>
+
+  <div class="container">
+    <div class="hero-inner">
+
+      <!-- Left: Copy -->
+      <div class="hero-content">
+
+        <!-- Coming Soon badge -->
+        <div class="hero-coming-soon" role="status" aria-label="Status: Coming Soon">
+          <span class="hero-coming-soon-dot" aria-hidden="true"></span>
+          🚀 Coming Soon
+        </div>
+
+        <!-- MAIN HEADLINE — do not change this text -->
+        <h1>
+          Rapi.in Bajumu<br />
+          <span class="highlight">Sekarang!</span><br />
+          Bayar Nanti Aja~
+        </h1>
+
+        <p>
+          Solusi laundry praktis dengan fasilitas Smart Locker 24/7
+          dan pembayaran PayLater khusus member Rapi.In.
+        </p>
+
+        <!-- Pre-launch promo strip -->
+        <div class="hero-promo" aria-label="Penawaran pre-launch membership">
+          <span class="hero-promo-price-old">Rp249.000/bln</span>
+          <div class="hero-promo-price-new">
+            Rp149.000<span>/bln</span>
+          </div>
+          <span class="hero-promo-badge">Save Rp100K</span>
+          <div class="hero-promo-divider" aria-hidden="true"></div>
+          <span class="hero-promo-badge red">🔥 10 Member Pertama</span>
+        </div>
+
+        <div class="hero-cta-group">
+          <button
+            class="btn btn-sky btn-lg book-now-trigger"
+            aria-label="Book Now — buka form pendaftaran"
+          >
+            Book Now
+          </button>
+          <a href="#usp" class="btn btn-outline-white btn-lg">
+            Pelajari Lebih →
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Right: Visual card -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-card">
+          <img
+            src="Logo Rapiin Loundry.jpeg"
+            alt="Rapi.In Laundry"
+            class="hero-card-logo"
+          />
+          <div class="hero-card-title">Rapi.In Laundry</div>
+
+          <div class="hero-card-row">
+            <div class="hero-card-row-icon">🔓</div>
+            <div class="hero-card-row-text">
+              <strong>Smart Locker 24/7</strong>
+              <span>Ambil laundry kapan saja — untuk semua pelanggan</span>
+            </div>
+          </div>
+
+          <div class="hero-card-row">
+            <div class="hero-card-row-icon">💳</div>
+            <div class="hero-card-row-text">
+              <strong>PayLater Payment</strong>
+              <span>Bayar nanti — eksklusif untuk member Rapi.In</span>
+            </div>
+          </div>
+
+          <div class="hero-card-row">
+            <div class="hero-card-row-icon">📍</div>
+            <div class="hero-card-row-text">
+              <strong>Jl. Borobudur Raya</strong>
+              <span>Tangerang</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating chips -->
+        <div class="hero-chip hero-chip-1">
+          <span class="hero-chip-icon">🔒</span>
+          <div>
+            <div class="hero-chip-label">Smart Locker</div>
+            <div class="hero-chip-value">Open 24/7</div>
+          </div>
+        </div>
+        <div class="hero-chip hero-chip-2">
+          <span class="hero-chip-icon">💳</span>
+          <div>
+            <div class="hero-chip-label">PayLater</div>
+            <div class="hero-chip-value">Member Only</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     WHY RAPI.IN?
+     ================================================================ -->
+<section id="why" class="section" aria-labelledby="why-heading">
+  <div class="container">
+
+    <div class="section-intro reveal">
+      <span class="section-badge">Kenapa Rapi.In?</span>
+      <h2 id="why-heading">Laundry Seharusnya Tidak Ribet</h2>
+      <p class="section-sub">
+        Jadwal padat, waktu terbatas. Rapi.In hadir biar kamu bisa
+        fokus ke hal yang lebih penting.
+      </p>
+    </div>
+
+    <div class="why-grid">
+
+      <div class="why-card reveal">
+        <div class="why-icon" aria-hidden="true">⏰</div>
+        <h4>Waktu Terbatas?</h4>
+        <p>Jam buka laundry biasa sering nggak sesuai jadwal kuliah atau kerjamu. Smart Locker kami tersedia 24/7.</p>
+      </div>
+
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-icon" aria-hidden="true">💸</div>
+        <h4>Bayar Lebih Fleksibel</h4>
+        <p>Jadi member dan nikmati kemudahan PayLater untuk transaksi laundry-mu. Rapi dulu, bayar nanti.</p>
+      </div>
+
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon" aria-hidden="true">👕</div>
+        <h4>Dikerjakan Profesional</h4>
+        <p>Staff Rapi.In menangani seluruh proses laundry. Kamu cukup antar, sisanya kami urus.</p>
+      </div>
+
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-icon" aria-hidden="true">📦</div>
+        <h4>Mudah & Praktis</h4>
+        <p>Antar langsung ke lokasi kami di Jl. Borobudur Raya, Tangerang. Proses mudah, hasil bersih.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================================================================
+     USP — 2 Feature Cards
+     ================================================================ -->
+<section id="usp" class="section" aria-labelledby="usp-heading">
+  <div class="container">
+
+    <div class="section-intro reveal">
+      <span class="section-badge">Keunggulan Utama</span>
+      <h2 id="usp-heading">Dua Hal yang Bikin Rapi.In Beda</h2>
+      <p class="section-sub">
+        Fasilitas Smart Locker untuk semua pelanggan, plus benefit PayLater eksklusif untuk member.
+      </p>
+    </div>
+
+    <div class="usp-grid">
+
+      <!-- USP 1: Smart Locker — EVERYONE -->
+      <article class="usp-card reveal">
+        <span class="usp-label everyone" aria-label="Tersedia untuk semua pelanggan">
+          ✅ Available for Everyone
+        </span>
+        <span class="usp-icon" aria-hidden="true">🔓</span>
+        <h3>24/7 Smart Locker Pickup</h3>
+        <p>
+          Collect your completed laundry whenever it suits you.
+          Our Smart Locker is available 24/7 for <strong>every Rapi.In customer</strong> — 
+          no membership required.
+        </p>
+        <p style="margin-top:.75rem; font-size:.82rem; color: #90A4AE;">
+          <em>* Smart Locker is for pick-up only. Drop-off is done directly at our location.</em>
+        </p>
+      </article>
+
+      <!-- USP 2: PayLater — MEMBERS ONLY -->
+      <article class="usp-card usp-blue reveal reveal-delay-2">
+        <span class="usp-label members" aria-label="Eksklusif untuk member">
+          ⭐ Exclusive Member Benefit
+        </span>
+        <span class="usp-icon" aria-hidden="true">💳</span>
+        <h3>Flexible PayLater Payment</h3>
+        <p>
+          Become a Rapi.In member and enjoy flexible PayLater payment options
+          for your laundry transactions. <strong>Exclusive for members only.</strong>
+        </p>
+        <p style="margin-top:.75rem; font-size:.82rem; color: #90A4AE;">
+          <em>* Non-members are not eligible for the PayLater payment facility.</em>
+        </p>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================================================================
+     HOW IT WORKS
+     ================================================================ -->
+<section id="how-it-works" class="section" aria-labelledby="how-heading">
+  <div class="container">
+
+    <div class="section-intro reveal">
+      <span class="section-badge">Cara Kerjanya</span>
+      <h2 id="how-heading">4 Langkah Mudah</h2>
+      <p class="section-sub">
+        Dari antar laundry sampai ambil hasil cucian — semuanya simpel dan praktis.
+      </p>
+    </div>
+
+    <div class="steps-wrapper">
+
+      <div class="step-card reveal">
+        <div class="step-num" aria-label="Langkah 1">1</div>
+        <div class="step-icon-box" aria-hidden="true">📦</div>
+        <h4>Drop Off Your Laundry</h4>
+        <p>Bawa langsung laundry-mu ke lokasi Rapi.In di Jl. Borobudur Raya, Tangerang.</p>
+      </div>
+
+      <div class="step-card reveal reveal-delay-1">
+        <div class="step-num" aria-label="Langkah 2">2</div>
+        <div class="step-icon-box" aria-hidden="true">🧾</div>
+        <h4>Choose Your Service</h4>
+        <p>Pilih layanan laundry sesuai kebutuhan dan jenis pakaianmu.</p>
+      </div>
+
+      <div class="step-card reveal reveal-delay-2">
+        <div class="step-num" aria-label="Langkah 3">3</div>
+        <div class="step-icon-box" aria-hidden="true">👕</div>
+        <h4>Let Us Handle It</h4>
+        <p>Staff profesional Rapi.In mengurus seluruh proses laundry untukmu.</p>
+      </div>
+
+      <div class="step-card reveal reveal-delay-3">
+        <div class="step-num" aria-label="Langkah 4">4</div>
+        <div class="step-icon-box" aria-hidden="true">🔓</div>
+        <h4>Pick Up Anytime</h4>
+        <p>Ambil laundry yang sudah selesai lewat Smart Locker kapan saja — 24/7, tersedia untuk semua pelanggan.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================================================================
+     PRICING — MEMBERSHIP
+     ================================================================ -->
+<section id="pricing-membership" class="section" aria-labelledby="membership-heading">
+  <div class="container">
+
+    <div class="section-intro reveal">
+      <span class="section-badge">Membership</span>
+      <h2 id="membership-heading">Jadi Member, Nikmati Lebih!</h2>
+      <p class="section-sub">
+        Dapatkan penawaran pre-launch spesial — terbatas untuk 10 member pertama saja.
+      </p>
+    </div>
+
+    <div class="membership-card reveal">
+
+      <!-- Top urgency badge -->
+      <div class="membership-badge-top" role="status">
+        🔥 Limited Pre-Launch Offer — First 10 Members Only
+      </div>
+
+      <div class="membership-title">Rapi.In Monthly Membership</div>
+
+      <div class="membership-price-old">Rp249.000/bulan</div>
+
+      <div class="membership-price-new">
+        <span class="membership-price-new-amount">Rp149.000</span>
+        <span class="membership-price-new-period">/bulan</span>
+      </div>
+
+      <div class="text-center">
+        <span class="membership-save-badge">🎉 Save Rp100K — ~40% Off</span>
+      </div>
+
+      <div class="membership-limit">
+        <span class="membership-limit-dot" aria-hidden="true"></span>
+        Tersisa untuk 10 member pertama
+      </div>
+
+      <!-- Promo code -->
+      <div class="membership-promo-code">
+        <span class="membership-promo-code-label">Kode Promo:</span>
+        <span class="membership-promo-code-value" aria-label="Kode promo RAPINOW">RAPINOW</span>
+      </div>
+
+      <p style="text-align:center; font-size:.93rem; margin-bottom:1.5rem;">
+        Join Rapi.In Membership untuk hanya <strong>Rp149.000/bulan</strong> dan nikmati
+        kemudahan pembayaran PayLater untuk transaksi laundry-mu.
+      </p>
+
+      <ul class="membership-features" role="list">
+        <li>
+          <span class="check" aria-hidden="true">✓</span>
+          Akses ke fasilitas PayLater untuk transaksi laundry
+        </li>
+        <li>
+          <span class="check" aria-hidden="true">✓</span>
+          Ambil laundry kapan saja via Smart Locker 24/7
+        </li>
+        <li>
+          <span class="check" aria-hidden="true">✓</span>
+          Layanan laundry dikerjakan oleh staff profesional
+        </li>
+        <li>
+          <span class="check" aria-hidden="true">✓</span>
+          Harga spesial pre-launch — hemat Rp100.000/bulan
+        </li>
+      </ul>
+
+      <button
+        class="btn btn-primary btn-lg book-now-trigger"
+        style="width:100%; font-size:1.05rem;"
+        aria-label="Become a Member — buka form pendaftaran"
+      >
+        Become a Member
+      </button>
+
+      <div class="membership-disclaimer">
+        <strong>⚠️ Penting:</strong> Biaya membership Rp149.000/bulan adalah <em>biaya keanggotaan saja</em>.
+        Biaya jasa laundry dihitung <em>terpisah</em> dan ditagihkan per transaksi.
+        Membership tidak termasuk kuota atau gratis laundry.
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================================================================
+     PRICING — LAUNDRY SERVICE
+     ================================================================ -->
+<section id="pricing-laundry" class="section" aria-labelledby="laundry-price-heading">
+  <div class="container">
+
+    <div class="section-intro reveal">
+      <span class="section-badge">Laundry Pricing</span>
+      <h2 id="laundry-price-heading">Quality Laundry Service,<br />Flexible Pricing.</h2>
+      <p class="section-sub">
+        Bayar hanya untuk laundry yang kamu kerjakan.
+        Harga tergantung jenis layanan dan jenis pakaian.
+      </p>
+    </div>
+
+    <div class="laundry-pricing-card reveal">
+      <h3>Harga Layanan Laundry</h3>
+      <div class="laundry-price-range" aria-label="Harga Rp7.000 sampai Rp20.000 per kilogram">
+        Rp7.000 – Rp20.000<span>/kg</span>
+      </div>
+      <p>
+        Biaya laundry ditentukan berdasarkan jenis layanan yang dipilih
+        dan jenis pakaian yang dicuci. Hubungi kami untuk info harga lengkap.
+      </p>
+      <span class="laundry-note">
+        💡 Biaya laundry terpisah dari biaya membership
+      </span>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================================================================
+     LOCATION
+     ================================================================ -->
+<section id="location" class="section" aria-labelledby="location-heading">
+  <div class="container">
+    <div class="location-inner">
+
+      <!-- Visual placeholder -->
+      <div class="location-visual reveal" aria-hidden="true">
+        <div class="location-visual-icon">📍</div>
+        <p style="font-size:.9rem; color:#90A4AE; max-width:220px; text-align:center; line-height:1.6;">
+          Jl. Borobudur Raya, Tangerang
+          <br /><br />
+          <em style="font-size:.78rem;">(Tambahkan peta atau foto lokasi di sini)</em>
+        </p>
+      </div>
+
+      <!-- Content -->
+      <div class="location-content reveal reveal-delay-2">
+        <span class="section-badge">Find Us Here</span>
+        <h2 id="location-heading">Temukan Kami di Tangerang</h2>
+        <p>
+          Bawa langsung laundry-mu ke lokasi kami dan biarkan Rapi.In yang mengurusnya.
+          Ambil hasilnya lewat Smart Locker kapan kamu mau.
+        </p>
+
+        <div class="location-address-box">
+          <div class="location-address-icon" aria-hidden="true">📍</div>
+          <div>
+            <div class="location-address-label">Lokasi Layanan</div>
+            <div class="location-address-value">Jl. Borobudur Raya, Tangerang</div>
+          </div>
+        </div>
+
+        <div class="location-locker-note">
+          <span aria-hidden="true">🔓</span>
+          <span>
+            <strong>Smart Locker</strong> tersedia di lokasi kami dan dapat diakses 
+            <strong>24 jam sehari, 7 hari seminggu</strong> untuk pengambilan laundry yang sudah selesai.
+          </span>
+        </div>
+
+        <div style="margin-top:1.5rem; padding:.85rem 1.1rem; background:var(--white); border-radius:var(--radius-sm); border:1px solid var(--border); font-size:.85rem; color:var(--mid-text);">
+          ⚠️ Rapi.In saat ini hanya melayani <strong>drop-off langsung di lokasi</strong>.
+          Kami belum menyediakan layanan pickup atau delivery ke rumah.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     FAQ
+     ================================================================ -->
+<section id="faq" class="section" aria-labelledby="faq-heading">
+  <div class="container">
+
+    <div class="section-intro reveal">
+      <span class="section-badge">FAQ</span>
+      <h2 id="faq-heading">Pertanyaan yang Sering Ditanya</h2>
+      <p class="section-sub">Ada yang masih bingung? Cek jawaban di bawah ini.</p>
+    </div>
+
+    <div class="faq-wrap">
+
+      <div class="faq-item reveal">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-btn-text">Apa itu Rapi.In?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Rapi.In adalah layanan laundry modern yang didesain untuk mahasiswa, pelajar, dan profesional muda. Rapi.In menyediakan fasilitas Smart Locker 24/7 untuk pengambilan laundry, serta program membership dengan benefit pembayaran PayLater.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-btn-text">Bagaimana membership Rapi.In bekerja?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Kamu cukup mendaftar sebagai member Rapi.In dengan membayar biaya keanggotaan bulanan. Setelah menjadi member, kamu mendapatkan akses ke fasilitas PayLater untuk pembayaran transaksi laundry-mu.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-btn-text">Apa yang dicakup oleh biaya membership Rp149.000/bulan?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Biaya Rp149.000/bulan adalah <strong>biaya keanggotaan</strong> untuk bergabung dengan program member Rapi.In. Biaya ini memberikan akses ke fasilitas PayLater untuk transaksi laundry. Biaya ini tidak mencakup jasa laundry.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-btn-text">Apakah biaya laundry sudah termasuk dalam membership?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer">
+          <p><strong>Tidak.</strong> Biaya membership dan biaya laundry adalah dua hal yang berbeda dan ditagihkan secara terpisah. Biaya jasa laundry dihitung per transaksi berdasarkan jenis layanan dan berat pakaian (Rp7.000–Rp20.000/kg).</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-btn-text">Siapa saja yang bisa menggunakan Smart Locker 24/7?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Smart Locker tersedia untuk <strong>semua pelanggan Rapi.In</strong> — baik member maupun non-member. Kamu tidak perlu menjadi member untuk mengambil laundry melalui Smart Locker.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-btn-text">Apakah non-member bisa menggunakan Smart Locker?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer">
+          <p><strong>Ya.</strong> Smart Locker pickup tersedia untuk semua pelanggan Rapi.In tanpa terkecuali. Fasilitas Smart Locker digunakan khusus untuk <em>pengambilan</em> laundry yang sudah selesai — bukan untuk pengantaran.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-btn-text">Berapa harga layanan laundry Rapi.In?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Harga jasa laundry berkisar antara <strong>Rp7.000 – Rp20.000 per kg</strong>, tergantung jenis layanan yang dipilih dan jenis pakaian yang dicuci. Hubungi kami untuk informasi harga yang lebih detail.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-btn-text">Apakah Rapi.In menyediakan layanan pickup atau delivery?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer">
+          <p><strong>Tidak.</strong> Rapi.In saat ini beroperasi dengan model drop-off langsung di lokasi. Pelanggan mengantarkan laundry secara langsung ke Jl. Borobudur Raya, Tangerang. Kami tidak menyediakan layanan jemput atau antar ke rumah.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-btn-text">Di mana lokasi Rapi.In?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Rapi.In berlokasi di <strong>Jl. Borobudur Raya, Tangerang</strong>. Informasi alamat lengkap akan diumumkan menjelang peluncuran resmi.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-btn-text">Bagaimana cara mendaftar membership Rapi.In?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Klik tombol <strong>"Book Now"</strong> di halaman ini untuk mengisi form pendaftaran. Pendaftaran resmi akan dibuka saat Rapi.In meluncur. Daftarkan minatmu sekarang dan jadilah salah satu dari 10 member pertama yang mendapatkan harga spesial pre-launch!</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     FINAL CTA
+     ================================================================ -->
+<section id="final-cta" aria-label="Ajakan utama">
+  <div class="container">
+    <div class="final-cta-inner reveal">
+      <span class="section-badge" style="background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.2); color:rgba(255,255,255,.85);">Siap Bergabung?</span>
+      <h2>Ready to Experience a<br />Better Laundry Routine?</h2>
+      <p>
+        Jadilah salah satu dari 10 member pertama Rapi.In dan
+        nikmati penawaran membership pre-launch spesial kami.
+      </p>
+      <button
+        class="btn btn-sky btn-lg book-now-trigger"
+        aria-label="Book Now — daftar jadi member"
+      >
+        Book Now
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     FOOTER
+     ================================================================ -->
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- Brand -->
+      <div class="footer-brand">
+        <img
+          src="Logo Rapiin Loundry.jpeg"
+          alt="Rapi.In Laundry"
+          class="footer-logo-img"
+        />
+        <p>
+          Layanan laundry modern dengan Smart Locker 24/7 dan
+          PayLater khusus member. Berlokasi di Jl. Borobudur Raya, Tangerang.
+        </p>
+        <div class="footer-socials">
+          <!-- PLACEHOLDER: Ganti # dengan link sosmed yang sesuai -->
+          <a href="#" class="footer-social-pill" aria-label="Instagram Rapi.In">📸 Instagram</a>
+          <a href="#" class="footer-social-pill" aria-label="TikTok Rapi.In">🎵 TikTok</a>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="footer-col">
+        <h5>Navigasi</h5>
+        <ul role="list">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#usp">Services</a></li>
+          <li><a href="#pricing-membership">Membership</a></li>
+          <li><a href="#location">Location</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <!-- Info -->
+      <div class="footer-col">
+        <h5>Info</h5>
+        <ul role="list">
+          <li><a href="#how-it-works">Cara Kerja</a></li>
+          <li><a href="#pricing-laundry">Harga Laundry</a></li>
+          <li><a href="#pricing-membership">Harga Membership</a></li>
+          <li><a href="#usp">Smart Locker</a></li>
+          <li><a href="#usp">PayLater</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-col">
+        <h5>Kontak</h5>
+
+        <div class="footer-contact-row">
+          <span class="footer-contact-row-icon" aria-hidden="true">📍</span>
+          <span>Jl. Borobudur Raya, Tangerang</span>
+        </div>
+
+        <div class="footer-contact-row">
+          <span class="footer-contact-row-icon" aria-hidden="true">📱</span>
+          <!-- PLACEHOLDER: Isi nomor WhatsApp/telepon -->
+          <span class="footer-placeholder">✏️ Nomor kontak belum ditentukan</span>
+        </div>
+
+        <div class="footer-contact-row">
+          <span class="footer-contact-row-icon" aria-hidden="true">✉️</span>
+          <!-- PLACEHOLDER: Isi email -->
+          <span class="footer-placeholder">✏️ Email belum ditentukan</span>
+        </div>
+
+        <div class="footer-contact-row">
+          <span class="footer-contact-row-icon" aria-hidden="true">🔓</span>
+          <span>Smart Locker: <strong style="color:rgba(255,255,255,.75);">24 Jam / 7 Hari</strong></span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2024 Rapi.In Laundry. Semua hak dilindungi.</p>
+      <p>Dibuat dengan ❤️ di Tangerang</p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ================================================================
+     REGISTRATION MODAL — FRONTEND PREVIEW ONLY
+     ================================================================ -->
+<!--
+  FUTURE_INTEGRATION_POINT:
+  Replace the form's data-action attribute value with your backend endpoint URL
+  or external form service URL when backend is ready.
+  Example: <form id="reg-form" data-action="https://your-backend.com/api/register">
+-->
+<div
+  class="modal-overlay"
+  id="modal-overlay"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modal-title"
+  aria-hidden="true"
+>
+  <div class="modal-box" id="modal-box">
+
+    <button
+      class="modal-close"
+      id="modal-close-btn"
+      aria-label="Tutup form pendaftaran"
+    >✕</button>
+
+    <div class="modal-logo-wrap">
+      <img src="Logo Rapiin Loundry.jpeg" alt="Rapi.In Laundry" class="modal-logo" />
+    </div>
+
+    <h3 id="modal-title">Daftar Jadi Member!</h3>
+    <p>Isi form di bawah untuk mengamankan posisi sebagai salah satu dari 10 member pertama.</p>
+
+    <!-- Preview notice -->
+    <div class="modal-preview-note" role="note" aria-live="polite">
+      ⚠️ <strong>Form preview</strong> — Pendaftaran resmi coming soon.
+    </div>
+
+    <!-- FRONTEND PREVIEW FORM — no backend, no data storage -->
+    <form
+      id="reg-form"
+      novalidate
+      data-action="FUTURE_INTEGRATION_POINT"
+      autocomplete="off"
+    >
+
+      <div class="form-group">
+        <label for="field-name">Nama Lengkap <span aria-hidden="true" style="color:#ef4444;">*</span></label>
+        <input
+          type="text"
+          id="field-name"
+          name="fullName"
+          placeholder="Contoh: Budi Santoso"
+          autocomplete="name"
+          required
+          maxlength="100"
+          aria-required="true"
+          aria-describedby="error-name"
+        />
+        <div class="form-error-msg" id="error-name" role="alert">
+          Nama lengkap tidak boleh kosong.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="field-instagram">Username Instagram <span aria-hidden="true" style="color:#ef4444;">*</span></label>
+        <input
+          type="text"
+          id="field-instagram"
+          name="instagramUsername"
+          placeholder="Contoh: @rapiin.laundry"
+          required
+          maxlength="60"
+          aria-required="true"
+          aria-describedby="error-instagram"
+        />
+        <div class="form-error-msg" id="error-instagram" role="alert">
+          Username Instagram tidak boleh kosong.
+        </div>
+      </div>
+
+      <div class="modal-submit-wrap">
+        <button
+          type="submit"
+          class="btn-submit"
+          id="submit-btn"
+          disabled
+          aria-disabled="true"
+          aria-label="Tombol submit — aktif setelah semua field diisi"
+        >
+          Daftar Sekarang
+        </button>
+      </div>
+
+    </form>
+
+    <p class="modal-disclaimer">
+      🔒 Form ini adalah <strong>preview frontend</strong> — data tidak dikirim ke mana pun.
+      Pendaftaran resmi akan diaktifkan sebelum peluncuran.
+    </p>
+
+  </div>
+</div>
+
+
+<script src="main.js"></script>
+</body>
+</html>
