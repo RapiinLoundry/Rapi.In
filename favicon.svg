@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Lingkaran background biru -->
+  <circle cx="32" cy="32" r="32" fill="#0B6E99"/>
+
+  <!-- Gambar logo di tengah lingkaran -->
+  <image
+    href="Logo Rapiin Fix.jpeg"
+    x="8" y="8"
+    width="48" height="48"
+    clip-path="url(#circle-clip)"
+    preserveAspectRatio="xMidYMid slice"
+  />
+
+  <!-- Clip path agar gambar ikut bulat -->
+  <defs>
+    <clipPath id="circle-clip">
+      <circle cx="32" cy="32" r="24"/>
+    </clipPath>
+  </defs>
+</svg>
